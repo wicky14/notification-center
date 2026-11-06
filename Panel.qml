@@ -47,20 +47,11 @@ Panel {
   // one-off Omarchy action stays its own stack.
   readonly property var groups: Model.buildGroups(root.filteredRows, root.lastSeenTs)
 
-  readonly property var filterOptions: [
-    { value: "all", label: strings.t("filter.all", "All") },
-    { value: "unread", label: strings.t("filter.unread", "Unread") }
-  ]
-
   readonly property string heroMeta: {
     if (root.dnd) return strings.t("panel.dndMeta", "Do not disturb · new notifications stay silent")
     if (root.totalCount === 0) return strings.t("panel.emptyMeta", "Reads Omarchy's notification history")
     return strings.t("panel.keptMeta", "Kept for 24 hours · 100 most recent")
   }
-
-  readonly property string heroDetail: root.unreadTotal > 0
-    ? strings.t("panel.new", "%1 new").arg(I18n.formatNumber(root.unreadTotal))
-    : ""
 
   readonly property string emptyTitle: {
     if (root.searchText.trim() !== "") return strings.t("empty.noMatchTitle", "No notifications match")
@@ -317,18 +308,15 @@ Panel {
           }
           title: strings.t("panel.title", "Notification Center")
           meta: root.heroMeta
-          detail: root.heroDetail
           foreground: root.barForeground
           fontFamily: Style.font.family
 
           trailingControl: Component {
-            Column {
-              spacing: Style.space(2)
+            Row {
+              spacing: Style.space(8)
 
               Text {
-                id: dndLabel
-                width: dndSwitch.implicitWidth
-                horizontalAlignment: Text.AlignHCenter
+                anchors.verticalCenter: parent.verticalCenter
                 textFormat: Text.PlainText
                 text: strings.t("panel.dndShort", "DND")
                 color: root.dimColor
@@ -431,18 +419,30 @@ Panel {
           implicitHeight: Math.max(filterGroup.implicitHeight, markRead.implicitHeight)
           height: implicitHeight
 
-          ButtonGroup {
+          Row {
             id: filterGroup
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
-            options: root.filterOptions
-            value: root.filterMode
-            focusable: false
-            fontFamily: Style.font.family
-            fontSize: Style.font.bodySmall
-            foreground: root.barForeground
-            accent: Commons.Color.accent
-            onChanged: function(value) { root.filterMode = value }
+            spacing: Style.space(8)
+
+            FilterChip {
+              label: strings.t("filter.all", "All")
+              selected: root.filterMode === "all"
+              foreground: root.barForeground
+              accent: Commons.Color.accent
+              fontFamily: Style.font.family
+              onClicked: root.filterMode = "all"
+            }
+
+            FilterChip {
+              label: strings.t("filter.unread", "Unread")
+              selected: root.filterMode === "unread"
+              count: root.unreadTotal
+              foreground: root.barForeground
+              accent: Commons.Color.accent
+              fontFamily: Style.font.family
+              onClicked: root.filterMode = "unread"
+            }
           }
 
           Button {
@@ -719,8 +719,21 @@ Panel {
         }
       }
 
+      Rectangle {
+        id: childConnector
+        visible: groupItem.expanded
+        x: Style.space(27)
+        anchors.top: headerRow.bottom
+        anchors.bottom: childColumn.bottom
+        anchors.bottomMargin: Style.space(10)
+        width: Math.max(1, Style.space(1))
+        color: Qt.rgba(root.barForeground.r, root.barForeground.g, root.barForeground.b, 0.16)
+      }
+
       Column {
         id: childColumn
+        anchors.top: headerRow.bottom
+        anchors.topMargin: Style.space(2)
         width: parent.width
         visible: groupItem.expanded
         spacing: 0
@@ -744,29 +757,28 @@ Panel {
               foreground: root.barForeground
               accent: Commons.Color.accent
 
+              Rectangle {
+                visible: childDelegate.modelData.closed_ts > root.lastSeenTs
+                x: Style.space(25)
+                width: Math.max(4, Style.space(5))
+                height: width
+                radius: width / 2
+                color: root.accentColor
+                anchors.verticalCenter: parent.verticalCenter
+              }
+
               Item {
                 id: childBody
                 anchors.left: parent.left
-                anchors.leftMargin: Style.space(42)
+                anchors.leftMargin: Style.space(54)
                 anchors.right: parent.right
                 anchors.rightMargin: Style.space(10)
                 anchors.verticalCenter: parent.verticalCenter
                 implicitHeight: Math.max(childText.implicitHeight, childTime.implicitHeight)
 
-                Rectangle {
-                  visible: childDelegate.modelData.closed_ts > root.lastSeenTs
-                  width: Math.max(3, Style.space(4))
-                  height: width
-                  radius: width / 2
-                  color: root.accentColor
-                  anchors.left: parent.left
-                  anchors.verticalCenter: parent.verticalCenter
-                }
-
                 Column {
                   id: childText
                   anchors.left: parent.left
-                  anchors.leftMargin: Style.space(12)
                   anchors.right: childTime.left
                   anchors.rightMargin: Style.space(8)
                   anchors.verticalCenter: parent.verticalCenter

@@ -29,6 +29,12 @@ BarWidget {
   readonly property int totalCount: root.rows.length
   readonly property real lastSeenTs: noticeState.lastSeenTs
 
+  // The bar carries the count itself when there is something new: a number
+  // beside the bell reads better than a dot floating over the glyph.
+  readonly property string unreadLabel: root.unreadCount <= 0
+    ? ""
+    : (root.unreadCount > 99 ? "99+" : I18n.formatNumber(root.unreadCount))
+
   readonly property string tooltipText: {
     if (root.dnd) return strings.t("bar.dnd", "Notifications · Do not disturb")
     if (root.unreadCount > 0)
@@ -203,6 +209,9 @@ BarWidget {
     anchors.fill: parent
     bar: root.bar
     text: root.dnd ? "\uf1f6" : "\uf0f3"
+    labelText: root.unreadLabel
+    active: root.unreadCount > 0
+    activeColor: Color.accent
     dimmed: root.dnd
     tooltipText: root.tooltipText
 
@@ -210,17 +219,5 @@ BarWidget {
       if (buttonCode === Qt.RightButton) root.toggleDnd()
       else root.togglePanel()
     }
-  }
-
-  Rectangle {
-    visible: root.unreadCount > 0
-    width: Math.max(4, Style.space(5))
-    height: width
-    radius: width / 2
-    color: Color.accent
-    anchors.top: parent.top
-    anchors.right: parent.right
-    anchors.topMargin: Style.space(4)
-    anchors.rightMargin: Style.space(4)
   }
 }
