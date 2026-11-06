@@ -29,12 +29,8 @@ BarWidget {
   readonly property int totalCount: root.rows.length
   readonly property real lastSeenTs: noticeState.lastSeenTs
 
-  // The bar carries the count itself when there is something new: a number
-  // beside the bell reads better than a dot floating over the glyph.
-  readonly property string unreadLabel: root.unreadCount <= 0
-    ? ""
-    : (root.unreadCount > 99 ? "99+" : I18n.formatNumber(root.unreadCount))
-
+  // Unread state is carried by the bell's accent color; the count lives in
+  // the tooltip and inside the panel, never beside the glyph.
   readonly property string tooltipText: {
     if (root.dnd) return strings.t("bar.dnd", "Notifications · Do not disturb")
     if (root.unreadCount > 0)
@@ -209,7 +205,6 @@ BarWidget {
     anchors.fill: parent
     bar: root.bar
     text: root.dnd ? "\uf1f6" : "\uf0f3"
-    labelText: root.unreadLabel
     active: root.unreadCount > 0
     activeColor: Color.accent
     dimmed: root.dnd

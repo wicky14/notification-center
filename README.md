@@ -13,7 +13,7 @@ only daemon; this plugin reads its history and never writes to it.
 ## Features
 
 - **Grouped history** — apps stack; browser notifications split by domain.
-- **Unread marks** — a badge and per-row dots since you last looked.
+- **Unread marks** — an accent-colored bell and per-row dots since you last looked.
 - **Search** — every word must match the app, site, title, or body.
 - **Unread filter** — only what arrived since you last acknowledged.
 - **Do Not Disturb** — reads and writes Omarchy's own DND state.
