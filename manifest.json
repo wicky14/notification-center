@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "wicky14.notification-center",
+  "name": "Notification Center",
+  "version": "1.0.0",
+  "author": "wicky14",
+  "license": "MIT",
+  "description": "A bar panel for Omarchy's notification history: grouped stacks, search, unread marks, and Do Not Disturb.",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Notification Center",
+    "description": "Omarchy's notification history, grouped by app or site",
+    "category": "System",
+    "allowMultiple": false,
+    "defaultSection": "right"
+  }
+}

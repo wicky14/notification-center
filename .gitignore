@@ -1,0 +1,13 @@
+# Editor and OS noise
+.DS_Store
+*.swp
+*~
+
+# Test and packaging leftovers
+node_modules/
+*.log
+dist/
+
+# Sibling plugin projects live in this working tree but are not part of this
+# repository; they are excluded in .git/info/exclude so the ignore file itself
+# stays useful to anyone who clones the plugin.

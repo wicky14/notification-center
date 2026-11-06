@@ -1,0 +1,35 @@
+{
+  "bar.dnd": "Notifikasi · Jangan ganggu",
+  "bar.unread": "Notifikasi · %1 baru",
+  "bar.idle": "Notifikasi",
+
+  "panel.title": "Pusat Notifikasi",
+  "panel.dndMeta": "Jangan ganggu · notifikasi baru tetap senyap",
+  "panel.emptyMeta": "Membaca riwayat notifikasi Omarchy",
+  "panel.keptMeta": "Disimpan 24 jam · 100 terbaru",
+  "panel.new": "%1 baru",
+  "panel.dndShort": "DND",
+  "panel.search": "Cari notifikasi…",
+  "panel.markAllRead": "Tandai semua dibaca",
+  "panel.footer": "Enter buka · → bentangkan · / cari · D jangan ganggu · Esc tutup",
+
+  "filter.all": "Semua",
+  "filter.unread": "Belum dibaca",
+
+  "empty.title": "Belum ada notifikasi",
+  "empty.body": "Notifikasi yang kamu terima akan muncul di sini. Omarchy menyimpan 24 jam terakhir.",
+  "empty.noMatchTitle": "Tidak ada notifikasi yang cocok",
+  "empty.noMatchBody": "Coba aplikasi, judul, atau pesan lain.",
+  "empty.noUnreadTitle": "Tidak ada yang belum dibaca",
+  "empty.noUnreadBody": "Semua notifikasi dalam 24 jam terakhir sudah dibaca.",
+  "empty.dndBody": "Jangan ganggu aktif. Notifikasi baru dikumpulkan di sini secara senyap.",
+
+  "app.omarchy": "Omarchy",
+  "app.notifySend": "notify-send",
+  "notice.silenced": "disenyapkan",
+  "notice.untitled": "Notifikasi",
+  "notice.unknownApp": "Notifikasi",
+
+  "time.yesterday": "Kemarin",
+  "keys.esc": "Esc"
+}

@@ -1,0 +1,35 @@
+{
+  "bar.dnd": "Notifications · Do not disturb",
+  "bar.unread": "Notifications · %1 new",
+  "bar.idle": "Notifications",
+
+  "panel.title": "Notification Center",
+  "panel.dndMeta": "Do not disturb · new notifications stay silent",
+  "panel.emptyMeta": "Reads Omarchy's notification history",
+  "panel.keptMeta": "Kept for 24 hours · 100 most recent",
+  "panel.new": "%1 new",
+  "panel.dndShort": "DND",
+  "panel.search": "Search notifications…",
+  "panel.markAllRead": "Mark all read",
+  "panel.footer": "Enter open · → expand · / search · D DND · Esc close",
+
+  "filter.all": "All",
+  "filter.unread": "Unread",
+
+  "empty.title": "No notifications yet",
+  "empty.body": "Notifications you receive will appear here. Omarchy keeps the last 24 hours.",
+  "empty.noMatchTitle": "No notifications match",
+  "empty.noMatchBody": "Try a different app, title, or message.",
+  "empty.noUnreadTitle": "Nothing unread",
+  "empty.noUnreadBody": "Everything in the last 24 hours has been read.",
+  "empty.dndBody": "Do not disturb is on. New notifications are collected here silently.",
+
+  "app.omarchy": "Omarchy",
+  "app.notifySend": "notify-send",
+  "notice.silenced": "silenced",
+  "notice.untitled": "Notification",
+  "notice.unknownApp": "Notification",
+
+  "time.yesterday": "Yesterday",
+  "keys.esc": "Esc"
+}
