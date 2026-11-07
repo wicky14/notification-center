@@ -121,8 +121,8 @@ touching real notifications, add these fields to the widget's entry in
 ```json
 {
   "id": "wicky14.notification-center",
-  "historyPath": "/home/you/Projects/omarchy-plugin/tests/fixtures/history.json",
-  "quietPath": "/home/you/Projects/omarchy-plugin/tests/fixtures/quiet.json"
+  "historyPath": "/home/you/Projects/omarchy-plugin/notification-center/tests/fixtures/history.json",
+  "quietPath": "/home/you/Projects/omarchy-plugin/notification-center/tests/fixtures/quiet.json"
 }
 ```
 
